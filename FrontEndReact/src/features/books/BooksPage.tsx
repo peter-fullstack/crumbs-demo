@@ -7,9 +7,6 @@ import { ErrorBoundary } from "../../shared/components/ErrorBoundary";
 import PaginationButtons from "./PaginationButtons";
 import type { BookDTO } from "./BookDTO";
 
-
-
-
 interface BooksPageProps {
   apiCall: (page: number, pageSize: number, search: string) => Promise<{ items: BookDTO[] }>;
 }
@@ -69,6 +66,7 @@ export default function BooksPage({ apiCall }: BooksPageProps) {
           <BookFormModal
             open={true}
             addItem={function (newBook: BookDTO): void {
+              // TODO: Logic for saving new book to backend and updating state
               setNewBook(newBook);
             }}
             onClose={function (): void {

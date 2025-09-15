@@ -1,5 +1,57 @@
 # React + TypeScript + Vite
 
+This app is a demo for a paginated table. Currently the data is provided through a mock api
+passed into the components from main.tsx. This makes the app standalone and testable out of the box 
+and without the need to run a back end api. Going forward I would provide the same testability using Mock Service Worker (MSW).
+
+The app provides a searchable list with paging but many details have not been addressed.
+
+Still to do:
+The app has not been tested or integrated with the ASP.NET Web Api.
+The modal add book form does not implement a POST to the backend.
+There is no functionality in the UI to set the available property for a book.
+
+```
+npm install msw --save-dev
+```
+Then implement handlers for the different requests. For example for a paged get books request:
+
+```
+import { rest } from "msw";
+
+const itemsPage1 = [
+  { id: 1, name: "Item 1" },
+  { id: 2, name: "Item 2" },
+];
+
+const itemsPage2 = [
+  { id: 3, name: "Item 3" },
+  { id: 4, name: "Item 4" },
+];
+
+export const handlers = [
+  rest.get("/api/items", (req, res, ctx) => {
+    const page = Number(req.url.searchParams.get("page") || 1);
+    const search = req.url.searchParams.get("search") || "";
+
+    let items = page === 1 ? itemsPage1 : itemsPage2;
+
+    if (search) {
+      items = items.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    return res(
+      ctx.status(200),
+      ctx.json({ items, hasMore: page < 2 })
+    );
+  }),
+];
+
+```
+The above would be a better appraoch then the prop-drilled mock api call currently being used.
+
 ## To run the app
 Use the command line and navigate to the root folder of this application - crumbs-demo
 
@@ -15,8 +67,6 @@ npm run dev
 
 Open the displayed Url in a browser.
 
-## Test Server
-
 ## Automated tests
 
 To run all tests in the project use 
@@ -30,6 +80,7 @@ To run a single suite of tests use
 ```
 npx vitest run src/features/books/BooksPage.mock.test.tsx
 ```
+Further development and testing will be needed to make this application more resilient to change.
 
 ## Configuration Options 
 

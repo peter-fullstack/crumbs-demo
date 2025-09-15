@@ -17,6 +17,9 @@ const BookForm: React.FC<Props> = ({ addItem, onClose }) => {
     e.preventDefault();
     setTouched({ title: true, owner: true });
     if (!title.trim() || !owner.trim()) return;
+    // Call the addItem prop with the new book data
+    // This is implement in the BooksPage component and
+    // will handle the api call to save the new book
     addItem({
       title: title.trim(),
       owner: owner.trim(),

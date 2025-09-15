@@ -8,15 +8,6 @@ import BooksPage from "./BooksPage";
 const createTestQueryClient = () =>
   new QueryClient({ defaultOptions: { queries: { retry: false } } });
 
-// Mock fetch responses
-const mockFetch = (data: any) =>
-  vi.spyOn(global, "fetch").mockImplementation(() =>
-    Promise.resolve({
-      ok: true,
-      json: () => Promise.resolve(data),
-    } as Response)
-  );
-
 afterEach(() => {
   vi.restoreAllMocks();
 });
@@ -26,6 +17,7 @@ test("renders first page", async () => {
     { title: "Item 1", owner: "Alice", availability: true },
     { title: "Item 2", owner: "Bob", availability: false }
   ];
+  
   const mockApiCall = (page: number, pageSize: number, search: string) => {
     return Promise.resolve({
       items: items.slice((page - 1) * pageSize, page * pageSize)
@@ -50,6 +42,7 @@ test("paginates to next page", async () => {
     { title: "Item 2", owner: "Bob", availability: false }
   ];
   let callCount = 0;
+
   const mockApiCall = (page: number, pageSize: number, search: string) => {
     callCount++;
     if (callCount === 1) {
@@ -60,6 +53,7 @@ test("paginates to next page", async () => {
   };
 
   const queryClient = createTestQueryClient();
+
   render(
     <QueryClientProvider client={queryClient}>
       <BooksPage apiCall={mockApiCall} />
@@ -69,7 +63,9 @@ test("paginates to next page", async () => {
   await waitFor(() => screen.getByText("Item 1"));
 
   fireEvent.click(screen.getByText(/Next/i));
+
   await waitFor(() => screen.getByText("Item 2"));
+  
   expect(screen.queryByText("Item 1")).not.toBeInTheDocument();
 });
 
