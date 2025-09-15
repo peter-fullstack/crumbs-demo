@@ -1,7 +1,6 @@
 using System.Net.Http.Json;
 using Crumbs.WebApi.DTOs;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Shouldly;
 using Microsoft.Extensions.DependencyInjection;
 using static Crumbs.WebApi.Data.DataLayer;

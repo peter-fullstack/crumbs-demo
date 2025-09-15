@@ -1,7 +1,6 @@
 ﻿using Crumbs.WebApi.DTOs;
 using Crumbs.WebApi.Models;
 using Crumbs.WebApi.Repositories;
-using Crumbs.WebApi.DTOs;
 
 namespace Crumbs.WebApi.Services
 {
@@ -42,7 +41,7 @@ namespace Crumbs.WebApi.Services
             await _repository.AddAsync(book);
             await _repository.SaveChangesAsync();
 
-            return book?.ToDto();
+            return book.ToDto();
         }
 
         public async Task<bool> UpdateAsync(int id, BookUpdateDto dto)
