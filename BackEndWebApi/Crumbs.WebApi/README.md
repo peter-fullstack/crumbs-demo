@@ -13,10 +13,9 @@ The Web API supports Open AI (Swagger) so the endpoints can be tested manually w
 ## Automated Testing
 There are 3 testing projects that handle different layers and types of testing.
 
-The Crumbs.Services.Tests focuses on the BookService class and mock out the IRepository interface to create a wide range of scenarios.
-The Crumbs.Repository.Tests focuses on the datalayer and the interactions with the database through Entity Framework - these could be converted to integration tests
-at a later point - potentially using a containerized database instance.
-The Crumbs.Controllers.Tests deliver an integration of the BookController and its dependencies - BookService, Repository and the database.
+- The Crumbs.Services.Tests focuses on the BookService class and mock out the IRepository interface to create a wide range of scenarios.
+- The Crumbs.Repository.Tests focuses on the datalayer and the interactions with the database through Entity Framework - these could be converted to integration tests at a later point - potentially using a containerized database instance.
+- The Crumbs.Controllers.Tests deliver an integration of the BookController and its dependencies - BookService, Repository and the database.
 
 These 3 test approaches will be extended as development progresses to provide a decent level of coverage in different configurations of the applications classes.
 
