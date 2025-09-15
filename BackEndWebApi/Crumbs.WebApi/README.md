@@ -8,6 +8,8 @@ time in its development.
 The application uses dependency injection to enforce loose-coupling and testability. Business logic is encapsulated in the BookService class and the datalayer in a
 generic Repository class. All these classes implement an interface so that they can be easily mocked for testing.
 
+The Web API supports Open AI (Swagger) so the endpoints can be tested manually when you run it.
+
 ## Automated Testing
 There are 3 testing projects that handle different layers and types of testing.
 
