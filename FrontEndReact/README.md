@@ -10,9 +10,9 @@ Still to do:
 - The app has not been tested or integrated with the ASP.NET Web Api.
 - The modal add book form does not implement a POST to the backend.
 - There is no functionality in the UI to set the available property for a book.
-- cleaner CSS and better layout
-- wider range of tests
-- better moack Api setup
+- Cleaner CSS and better layout
+- Wider range of tests
+- Better Mock Api setup and developer experience
 
 Going forward I would provide the same testability using Mock Service Worker (MSW).
 
