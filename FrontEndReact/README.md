@@ -2,7 +2,7 @@
 
 This app is a demo for a paginated table. Currently the data is provided through a mock api
 passed into the components from main.tsx. This makes the app standalone and testable out of the box 
-and without the need to run a back end api. Going forward I would provide the same testability using Mock Service Worker (MSW).
+and without the need to run a back end api. 
 
 The app provides a searchable list with paging but many details have not been addressed.
 
@@ -10,6 +10,8 @@ Still to do:
 The app has not been tested or integrated with the ASP.NET Web Api.
 The modal add book form does not implement a POST to the backend.
 There is no functionality in the UI to set the available property for a book.
+
+Going forward I would provide the same testability using Mock Service Worker (MSW).
 
 ```
 npm install msw --save-dev
